@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.thm1{
+    background-color: black;
+    color: white;
+}
+.thm2{
+    background-color: white;
+    color: black;
+}
