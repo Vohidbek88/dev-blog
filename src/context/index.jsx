@@ -44,6 +44,24 @@ export const DataProvider = ({ children }) => {
     }
 
 
+    const getAllBooks = async (setBooks, setFilter) => {
+        startTransition(async () => {
+
+            try {
+                const res = await axios.get('/books', {
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+                setBooks(res.data.data);
+                setFilter(res.data.data)
+
+            } catch (error) {
+                console.log(error);
+            }
+
+        })
+    }
 
 
     const onDeleteBook = async (setBool, bool, book) => {
@@ -51,6 +69,7 @@ export const DataProvider = ({ children }) => {
         try {
             await axios.delete(`/books/${book._id}`);
             setBool(!bool)
+            window.location.reload()
         } catch (error) {
             console.log(error);
         }
@@ -84,36 +103,18 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    const getAllBooks = async (setBooks, setFilter) => {
-        startTransition(async () => {
-
-            try {
-                const res = await axios.get('/books',{
-                    headers:{
-                        'Cache-Control':'no-cache'
-                    }
-                });
-                setBooks(res.data.data);
-                setFilter(res.data.data)
-
-            } catch (error) {
-                console.log(error);
-            }
-
-        })
-    }
 
     const logout = async () => {
-        startTransition(async () => {
-            try {
-                await axios.delete('/user/logout', { withCredentials: true });
-                setUserData(null)
-                navigate('/')
-                window.location.reload();
-            } catch (error) {
-                console.log(error);
-            }
-        })
+
+        try {
+            await axios.delete('/user/logout', { withCredentials: true });
+            setUserData(null)
+            window.location.reload();
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const getBookSingle = async (id, setBook) => {
@@ -219,7 +220,7 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    return <DataContext.Provider value={{toBase64, userdata, usergetload, StatusLikeTrue, StatusLikeFalse, setUserData, handleSave, loading, onDeleteBook, getBook, handleEdit, getAllBooks, isPending, logout, getBookSingle, handleSignin, handleSignup, setTheme, theme, getUser, handleLike, getSingleImage }}>
+    return <DataContext.Provider value={{ toBase64, userdata, usergetload, StatusLikeTrue, StatusLikeFalse, setUserData, handleSave, loading, onDeleteBook, getBook, handleEdit, getAllBooks, isPending, logout, getBookSingle, handleSignin, handleSignup, setTheme, theme, getUser, handleLike, getSingleImage }}>
         {children}
     </DataContext.Provider>
 }

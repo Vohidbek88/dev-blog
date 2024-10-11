@@ -48,6 +48,7 @@ const CreateBook = () => {
                     <input type="number" value={book.publishYear} id='pub' onChange={e => setBook({ ...book, publishYear: e.target.value })} className='border-slate-600 border px-1 py-2 w-full rounded-md' />
                     <label htmlFor="fayl" className="text-xl mr-4 text-gray-500">Rasm yuklang</label>
                     <input type="file" accept='image/*' id='fayl' onChange={e => handleFileChange(e.target.files[0])} className='border-slate-600 border py-2 w-full rounded-md' />
+                     <span className='text-xl text-yellow-300'>{upload && 'Uploading...'}</span>
                     <button className='flex mt-8 w-full justify-center rounded-md bg-amber-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' disabled={loading || upload} onClick={() => handleSave(book)}>{
                         loading ? 'Creating...' : 'Create'
                     }</button>
