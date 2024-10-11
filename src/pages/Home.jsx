@@ -18,9 +18,9 @@ const Home = () => {
 
 
     useEffect(() => {
-        if(books.length==0){
+      
             getAllBooks(setBooks, setFilter)  
-        }
+        
     }, [bool])
 
 
