@@ -14,13 +14,13 @@ const Navbar = () => {
 
 
     return (
-        <nav className='flex justify-between px-4 py-4 bg-black bg-opacity-45 backdrop-blur-lg shadow-emerald-50 sticky top-0 w-full z-50'>
+        <nav className='flex justify-between p-2 bg-black bg-opacity-45 backdrop-blur-lg shadow-emerald-50 sticky top-0 w-full z-50'>
             <div className='flex items-center justify-between  p-0 m-0 gap-x-8'>
                 <Link to={'/'} className='text-2xl font-bold text-white'>
                     <span className='font-bold text-pretty'>DEV</span><span className='relative'>blo<span className='rotate-180 top-1 absolute animate-bounce'>g</span></span>
                 </Link>
             </div>
-            <ul className='list-none flex items-center'>
+            <ul className='list-none flex items-center gap-x-2'>
 
                 <li className='hidden md:block mr-2'>
                     <Link to={'/'} className='font-bold text-xl text-white'>Home</Link>
