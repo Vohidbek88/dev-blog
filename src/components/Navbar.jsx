@@ -44,7 +44,7 @@ const Navbar = () => {
 
                     {
                         menu && (
-                            <ul className="list-none absolute -top-4 w-[30vh] -right-4 h-[100vh] bg-black bg-opacity-55 backdrop-blur-lg p-2">
+                            <ul className="list-none absolute -top-4 w-[30vh] -right-4 h-[100vh] bg-black bg-opacity-45 backdrop-blur-lg p-2">
                                 <li> <MdClose className='cursor-pointer text-white text-2xl block md:hidden' onClick={() => setMenu(false)}/></li>
                                 <li className='flex md:hidden justify-center'>
                                     <Link to={'/'} className='font-bold text-xl text-white' onClick={() => setMenu(false)}>Home</Link>
