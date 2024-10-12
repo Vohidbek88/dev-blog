@@ -7,9 +7,11 @@ import { DataProvider } from './context/index.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+
       <DataProvider>
-      <App />
+        <App />
       </DataProvider>
+
     </BrowserRouter>
   </StrictMode>,
 )

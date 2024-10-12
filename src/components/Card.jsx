@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState} from 'react'
-import { AiOutlineEdit, AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
+import React, { useContext, useEffect, useState } from 'react'
+import { AiOutlineEdit, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { BsInfoCircle} from 'react-icons/bs';
+import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 import Button from './Button';
 import DeleteBook from '../pages/DeleteBook';

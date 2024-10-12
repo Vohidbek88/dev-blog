@@ -9,7 +9,7 @@ import { DataContext } from '../context';
 import Card from '../components/Card';
 
 const Home = () => {
-    const { getAllBooks, isPending,usergetload } = useContext(DataContext)
+    const { getAllBooks, isPending, usergetload } = useContext(DataContext)
     const [books, setBooks] = useState([]);
     const [show, setShow] = useState({ bool: false, book: {} })
     const [bool, setBool] = useState(false)
@@ -18,9 +18,9 @@ const Home = () => {
 
 
     useEffect(() => {
-      
-            getAllBooks(setBooks, setFilter)  
-        
+
+            getAllBooks(setBooks, setFilter)
+     
     }, [bool])
 
 
@@ -36,7 +36,7 @@ const Home = () => {
                     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
                         <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
                             {
-                              (filterarr.length>0 && !usergetload) &&  filterarr?.map(item => <Card key={item._id}  item={item} bool={bool} setBool={setBool} setShow={setShow} show={show} />)
+                                (filterarr.length > 0 && !usergetload) && filterarr?.map(item => <Card key={item._id} item={item} bool={bool} setBool={setBool} setShow={setShow} show={show} />)
                             }
                         </div>
                     </div>

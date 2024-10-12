@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context';
 
+
 const Signup = () => {
 
     const [user, setUser] = useState({ username: '', email: '', password: null });
+
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const {userdata,handleSignup,loading}=useContext(DataContext)

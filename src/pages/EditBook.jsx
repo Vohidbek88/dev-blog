@@ -44,7 +44,7 @@ const EditBook = () => {
     return (
         <div className='p-4'>
             <BackButton />
-            <h1 className='text-2xl my-4 text-center'>Edit Book</h1>
+            <h1 className='text-2xl my-4 text-center'>Edit blog</h1>
             {
                 loading ? <Spinner /> : ''
             }

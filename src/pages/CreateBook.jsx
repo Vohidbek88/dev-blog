@@ -34,7 +34,7 @@ const CreateBook = () => {
     return (
         <div className='p-4'>
             <BackButton />
-            <h1 className='text-2xl my-4 text-center'>Create Book</h1>
+            <h1 className='text-2xl my-4 text-center'>Create blog</h1>
             {
                 loading ? <Spinner /> : ''
             }
