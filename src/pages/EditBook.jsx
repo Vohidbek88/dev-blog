@@ -24,7 +24,7 @@ const EditBook = () => {
                 },
                 withCredentials: true,
             });
-            setBook({ ...book, imageObject: res.data._id })
+            setBook({ ...book, imageObject: res.data.image })
             setUpload(false)
             console.log(res.data._id);
         } catch (error) {

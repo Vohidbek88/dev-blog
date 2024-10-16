@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState, useTransition } from 'react'
 import { useParams } from 'react-router-dom';
-import {AiFillClockCircle,AiOutlineFieldTime} from 'react-icons/ai'
-import {BiUserCheck} from 'react-icons/bi'
+import { AiFillClockCircle, AiOutlineFieldTime } from 'react-icons/ai'
+import { BiUserCheck } from 'react-icons/bi'
 import Spinner from '../components/Spinner';
 import { DataContext } from '../context';
 
 
 const ShowBook = () => {
     const [book, setBook] = useState(null);
-    const { getBookSingle, toBase64,getSingleImage } = useContext(DataContext)
-    const [imgBuffer, setImgBuffer] = useState(null);
+    const { getBookSingle } = useContext(DataContext)
+
     const [isPending, startTransition] = useTransition()
 
     const { id } = useParams();
@@ -17,16 +17,13 @@ const ShowBook = () => {
 
 
     useEffect(() => {
-    
+
         startTransition(() => {
-            getBookSingle(id, setBook)    
+            getBookSingle(id, setBook)
         })
-    
+
     }, [])
 
-if(book){
-    getSingleImage(book?.imageObject,setImgBuffer) 
-}
     return (
         <div className='flex  justify-center mx-auto items-center w-[320px]'>
             {
@@ -35,12 +32,12 @@ if(book){
                         <div className='my-2'>
 
                             {
-                                toBase64(imgBuffer?.data) ? <img src={`data:image/png;base64,${toBase64(imgBuffer?.data)}`} width={'300px'} height={'300px'} alt={book?.title} /> : <Spinner />
+                                book ? <img src={`http://localhost:5555/images/${book.imageObject}`} width={'300px'} height={'300px'} alt={book?.title} /> : <Spinner />
                             }
 
                         </div>
                         <div className="my-2 hover:bg-slate-400 p-2 rounded-md flex items-center">
-                            <span className='text-xl mr-4 text-amber-500'><BiUserCheck/></span>
+                            <span className='text-xl mr-4 text-amber-500'><BiUserCheck /></span>
                             <span>{book?.email}</span>
                         </div>
                         <div className="my-2 hover:bg-slate-400 p-2 rounded-md">
@@ -52,15 +49,15 @@ if(book){
                             <span>{book?.author}</span>
                         </div>
                         <div className="my-2 hover:bg-slate-400 p-2 rounded-md flex items-center">
-                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiOutlineFieldTime/>publish year:</span>
+                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiOutlineFieldTime />publish year:</span>
                             <span>{book?.publishYear}</span>
                         </div>
                         <div className="my-2 hover:bg-slate-400 p-2 rounded-md flex items-center">
-                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiFillClockCircle/> update:</span>
+                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiFillClockCircle /> update:</span>
                             <span>{new Date(book?.createdAt).toString().slice(7, 25)}</span>
                         </div>
                         <div className="my-2 hover:bg-slate-400 p-2 rounded-md flex items-center">
-                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiFillClockCircle/>create:</span>
+                            <span className='text-xl mr-4 text-amber-500 flex items-center gap-x-1'><AiFillClockCircle />create:</span>
                             <span>{new Date(book?.updatedAt).toString().slice(7, 25)}</span>
                         </div>
                     </div>

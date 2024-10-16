@@ -109,8 +109,8 @@ export const DataProvider = ({ children }) => {
         try {
             await axios.delete('/user/logout', { withCredentials: true });
             setUserData(null)
-            window.location.reload();
             navigate('/')
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -183,17 +183,6 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    const getSingleImage = async (id, setImgBuffer) => {
-
-        try {
-            const res = await axios.get(`/image/${id}`);
-            setImgBuffer(res.data.image.data)
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
     const StatusLikeTrue = async (idCard) => {
         try {
             await axios.post(`/books/statuslike/${userdata._id}`, { idCard });
@@ -210,17 +199,9 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    function toBase64(arrayBuffer) {
-        const bytes = new Uint8Array(arrayBuffer);
-        let binary = '';
-        for (let i = 0; i < bytes.byteLength; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return btoa(binary);
-    }
 
 
-    return <DataContext.Provider value={{ toBase64, userdata, usergetload, StatusLikeTrue, StatusLikeFalse, setUserData, handleSave, loading, onDeleteBook, getBook, handleEdit, getAllBooks, isPending, logout, getBookSingle, handleSignin, handleSignup, setTheme, theme, getUser, handleLike, getSingleImage }}>
+    return <DataContext.Provider value={{  userdata, usergetload, StatusLikeTrue, StatusLikeFalse, setUserData, handleSave, loading, onDeleteBook, getBook, handleEdit, getAllBooks, isPending, logout, getBookSingle, handleSignin, handleSignup, setTheme, theme, getUser, handleLike}}>
         {children}
     </DataContext.Provider>
 }

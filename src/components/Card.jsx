@@ -11,10 +11,10 @@ import Spinner from './Spinner';
 const Card = ({ item, setBool, bool, setShow, show }) => {
 
   const [optionsDrop, setDrop] = useState(true);
-  const [imgBuff, setImgBuff] = useState(null);
+  
   const [like, setLike] = useState(false);
   const [likeC, setLikeC] = useState(Number(item.likecount))
-  const { handleLike, getSingleImage, StatusLikeTrue, StatusLikeFalse, userdata, toBase64 } = useContext(DataContext)
+  const { handleLike, StatusLikeTrue, StatusLikeFalse, userdata} = useContext(DataContext)
   const navigate = useNavigate()
 
 
@@ -22,7 +22,6 @@ const Card = ({ item, setBool, bool, setShow, show }) => {
 
     setLike(Boolean(userdata?.savedLike?.some((id) => id == item._id)))
 
-    getSingleImage(item.imageObject, setImgBuff);
   }, [])
 
 
@@ -68,8 +67,8 @@ const Card = ({ item, setBool, bool, setShow, show }) => {
     <div className="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
       <div className='w-full'>
         {
-          toBase64(imgBuff?.data) ? <img
-            src={`data:image/png;base64,${toBase64(imgBuff?.data)}`}
+          item ? <img
+            src={`http://localhost:5555/images/${item.imageObject}`}
             className="w-full mb-3 h-[250px]"
             alt={item?.title}
           /> : <Spinner />
