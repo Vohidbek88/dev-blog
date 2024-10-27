@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import {AiOutlineLogin} from 'react-icons/ai'
 import { DataContext } from '../context';
+import { Helmet } from 'react-helmet';
 
 
 const Signup = () => {
@@ -9,7 +11,7 @@ const Signup = () => {
 
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const {userdata,handleSignup,loading}=useContext(DataContext)
+    const {userdata,handleSignup,loading,theme}=useContext(DataContext)
     
     if(userdata){
         navigate('/')
@@ -17,9 +19,12 @@ const Signup = () => {
  
 
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div className={`flex h-[92vh] bg-${theme} flex-col justify-center px-6 py-12 lg:px-8`}>
+            <Helmet>
+                <title>Sign up</title>
+            </Helmet>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up to your account</h2>
+            <h2 className={`mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-${theme=='white' ? 'gray-900':'white'}`}>Sign up to your account</h2>
             {
             error && <p className='w-[200px] rounded-md mx-auto text-xs mt-4  font-bold text-red-500 border border-red-500 text-center'> {error}</p>
         }
@@ -28,13 +33,13 @@ const Signup = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6">
             <div>
-                    <label for="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
+                    <label for="username" className={`block text-sm font-medium leading-6 text-${theme=='white' ? 'gray-900':'white'}`}>Username</label>
                     <div className="mt-2">
                         <input id="username" name="username" type="text" autocomplete="username" onChange={e => setUser({ ...user, username: e.target.value })} required className="block  w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
                 <div>
-                    <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="email" className={`block text-sm font-medium leading-6 text-${theme=='white' ? 'gray-900':'white'}`}>Email address</label>
                     <div className="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email" onChange={e => setUser({ ...user, email: e.target.value })} required className="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
@@ -42,7 +47,7 @@ const Signup = () => {
 
                 <div>
                     <div className="flex items-center justify-between">
-                        <label for="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                        <label for="password" className={`block text-sm font-medium leading-6 text-${theme=='white' ? 'gray-900':'white'}`}>Password</label>
                     </div>
                     <div className="mt-2">
                         <input id="password" name="password" type="password" onChange={e => setUser({ ...user, password: e.target.value })} autocomplete="current-password" required className="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />

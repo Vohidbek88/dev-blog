@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useContext } from 'react'
 import Spinner from '../components/Spinner'
-
+import { Helmet } from 'react-helmet'
 
 
 import Search from '../components/Search';
@@ -9,26 +9,29 @@ import { DataContext } from '../context';
 import Card from '../components/Card';
 
 const Home = () => {
-    const { getAllBooks, isPending, usergetload } = useContext(DataContext)
+    const { isPending,userdata,usergetload, theme, getAllBooks ,getUser} = useContext(DataContext)
     const [books, setBooks] = useState([]);
-    const [show, setShow] = useState({ bool: false, book: {} })
-    const [bool, setBool] = useState(false)
+
     const [filterarr, setFilter] = useState([])
 
 
 
     useEffect(() => {
+        getUser()
+        getAllBooks(setBooks, setFilter)
 
-            getAllBooks(setBooks, setFilter)
-     
-    }, [bool])
+       
+    }, [])
 
 
 
     return (
-        <div className='p-4'>
+        <div className={`p-4 bg-${theme} text-${theme}`}>
+            <Helmet>
+                <title>DevBlog</title>
+            </Helmet>
             <div className='flex justify-center items-center'>
-                <Search books={books} setFilter={setFilter} />
+                <Search books={books} theme={theme} setFilter={setFilter} />
             </div>
 
             {
@@ -36,7 +39,7 @@ const Home = () => {
                     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
                         <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
                             {
-                                (filterarr.length > 0 && !usergetload) && filterarr?.map(item => <Card key={item._id} item={item} bool={bool} setBool={setBool} setShow={setShow} show={show} />)
+                                (filterarr.length > 0 && !usergetload) && filterarr?.map(item => <Card key={item._id} item={item} userdata={userdata}/>)
                             }
                         </div>
                     </div>

@@ -4,12 +4,14 @@ import { Route, Routes } from 'react-router-dom';
 import { DataContext } from './context';
 import { CreateBook, EditBook, Home, Profile, ShowBook, Signin, Signup } from './pages';
 import Navbar from './components/Navbar';
+
 const App = () => {
 
   const {getUser}=useContext(DataContext);
 
   useEffect(() => {
     getUser()
+
   }, [])
 
 
@@ -25,7 +27,6 @@ const App = () => {
         <Route path='/user/signin' element={<Signin />} />
         <Route path='/user/profile' element={<Profile />} />
       </Routes>
-    
     </>
   )
 }
